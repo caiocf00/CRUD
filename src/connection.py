@@ -1,37 +1,13 @@
-'''import mysql
-import mysql.connector
-from mysql.connector import Error
-
-def get_connection():
-    try:
-        conexao = mysql.connector.connect(
-        host='195.179.238.1',
-        user='u275872813_2ds',
-        password='Controlegasto25',
-        database="u275872813_controle_gasto"
-        )
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base
 
 
-        if conexao.is_connected():
-            print("Conexão bem-sucedida!")
-            return conexao
-    except Error as e:
-        print("Erro ao conectar ao Banco.", e)
-        return None
+SQLALCHEMY_DATABASE_URI = "sqlite:///controle_usuario.db"
 
-if __name__ == "__main__":
-    get_connection()   '''
-
-import sqlite3
-
-def get_connet():
-    try:
-        conexao = sqlite3.connect('controle_usuario.db')
-        print("Conexão bem-sucedida!")
-        return conexao
-    except sqlite3.Error as e:
-        print("Erro ao conectar ao Banco.", e)
-        return None
-
-if __name__ == "__main__":
-    get_connet() 
+try:
+    engine = create_engine(SQLALCHEMY_DATABASE_URI)
+    conntion = engine.connect()
+    print("Conexão com o banco de dados realizada com sucesso!")
+except Exception as e:
+    print("Erro ao conectar ao banco de dados:")
+Base = declarative_base()

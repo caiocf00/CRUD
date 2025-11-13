@@ -11,3 +11,5 @@ try:
 except Exception as e:
     print("Erro ao conectar ao banco de dados:")
 Base = declarative_base()
+
+Base.metadata.create_all(engine)
